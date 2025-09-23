@@ -193,6 +193,19 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "LedgerManager.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LedgerManager.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LedgerManager.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LedgerManager.Application.dll": {}
+        }
+      },
       "LedgerManager.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -541,6 +554,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "LedgerManager.Application/1.0.0": {
+      "type": "project",
+      "path": "../LedgerManager.Application/LedgerManager.Application.csproj",
+      "msbuildProject": "../LedgerManager.Application/LedgerManager.Application.csproj"
+    },
     "LedgerManager.Domain/1.0.0": {
       "type": "project",
       "path": "../LedgerManager.Domain/LedgerManager.Domain.csproj",
@@ -549,6 +567,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "LedgerManager.Application >= 1.0.0",
       "LedgerManager.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.9"
     ]
@@ -586,6 +605,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "D:\\Projects\\LedgerManager\\src\\LedgerManager.Application\\LedgerManager.Application.csproj": {
+              "projectPath": "D:\\Projects\\LedgerManager\\src\\LedgerManager.Application\\LedgerManager.Application.csproj"
+            },
             "D:\\Projects\\LedgerManager\\src\\LedgerManager.Domain\\LedgerManager.Domain.csproj": {
               "projectPath": "D:\\Projects\\LedgerManager\\src\\LedgerManager.Domain\\LedgerManager.Domain.csproj"
             }

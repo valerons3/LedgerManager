@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LedgerManager.Application\LedgerManager.Application.csproj" />
     <ProjectReference Include="..\LedgerManager.Domain\LedgerManager.Domain.csproj" />
   </ItemGroup>
 
