@@ -8,5 +8,6 @@ public class Resident
     public DateTime? BirthDate { get; set; } = null!;
     public required Guid AccountId { get; set; }
     
+    
     public Account? Account { get; set; } = null!;
 }
