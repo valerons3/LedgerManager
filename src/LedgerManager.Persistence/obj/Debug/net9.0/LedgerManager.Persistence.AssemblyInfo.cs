@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerManager.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9d60051c10058974cfec12427accb1fc812ace5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0e5d6e80ac108468138819d9bdad63d90f12dfa")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerManager.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerManager.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
