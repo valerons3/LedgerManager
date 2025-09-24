@@ -1135,6 +1135,19 @@
           "bin/placeholder/LedgerManager.Domain.dll": {}
         }
       },
+      "LedgerManager.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LedgerManager.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LedgerManager.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LedgerManager.Infrastructure.dll": {}
+        }
+      },
       "LedgerManager.Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -3183,6 +3196,11 @@
       "path": "../LedgerManager.Domain/LedgerManager.Domain.csproj",
       "msbuildProject": "../LedgerManager.Domain/LedgerManager.Domain.csproj"
     },
+    "LedgerManager.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../LedgerManager.Infrastructure/LedgerManager.Infrastructure.csproj",
+      "msbuildProject": "../LedgerManager.Infrastructure/LedgerManager.Infrastructure.csproj"
+    },
     "LedgerManager.Persistence/1.0.0": {
       "type": "project",
       "path": "../LedgerManager.Persistence/LedgerManager.Persistence.csproj",
@@ -3191,6 +3209,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "LedgerManager.Infrastructure >= 1.0.0",
       "LedgerManager.Persistence >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.9",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.9"
@@ -3229,6 +3248,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "D:\\Projects\\LedgerManager\\src\\LedgerManager.Infrastructure\\LedgerManager.Infrastructure.csproj": {
+              "projectPath": "D:\\Projects\\LedgerManager\\src\\LedgerManager.Infrastructure\\LedgerManager.Infrastructure.csproj"
+            },
             "D:\\Projects\\LedgerManager\\src\\LedgerManager.Persistence\\LedgerManager.Persistence.csproj": {
               "projectPath": "D:\\Projects\\LedgerManager\\src\\LedgerManager.Persistence\\LedgerManager.Persistence.csproj"
             }

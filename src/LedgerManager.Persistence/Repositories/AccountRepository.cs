@@ -33,6 +33,11 @@ public class AccountRepository : IAccountRepository
             .FirstOrDefaultAsync(a => a.Id == id);
     }
 
+    public async Task<Account?> GetByIdAsync(Guid id)
+    {
+        return await context.Accounts.FirstOrDefaultAsync(a => a.Id == id);
+    }
+
     public async Task UpdateAsync(Account account)
     {
         context.Accounts.Update(account);
@@ -55,7 +60,8 @@ public class AccountRepository : IAccountRepository
     {
         IQueryable<Account> query = context.Accounts
             .Include(a => a.Residents)
-            .AsQueryable();
+            .AsQueryable()
+            .AsNoTracking();
 
         if (filter.HasResidents.HasValue && filter.HasResidents.Value)
             query = query.Where(a => a.Residents.Any());

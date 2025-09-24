@@ -19,7 +19,7 @@ public class ResidentRepository : IResidentRepository
         return await context.Residents.FindAsync(id);
     }
 
-    public async Task<List<Resident>?> GetAllAsync()
+    public async Task<List<Resident>> GetAllAsync()
     {
         return await context.Residents.ToListAsync();
     }

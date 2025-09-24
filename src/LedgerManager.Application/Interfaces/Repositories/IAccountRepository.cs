@@ -8,6 +8,7 @@ public interface IAccountRepository
     Task<List<Account>> GetAllAsync();
     Task<Account?> GetByAccountNumberAsync(string accountNumber);
     Task<Account?> GetAccountWithDetailsAsync(Guid id);
+    Task<Account?> GetByIdAsync(Guid id);
     
     Task UpdateAsync(Account account);
     Task AddAsync(Account account);

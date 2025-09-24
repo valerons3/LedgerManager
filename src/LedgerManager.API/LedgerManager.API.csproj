@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LedgerManager.Infrastructure\LedgerManager.Infrastructure.csproj" />
     <ProjectReference Include="..\LedgerManager.Persistence\LedgerManager.Persistence.csproj" />
   </ItemGroup>
 
