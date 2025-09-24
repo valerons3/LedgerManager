@@ -26,8 +26,8 @@ public class AccountService : IAccountService
                 new AccountDto(
                     a.Id,
                     a.AccountNumber
-                    ))
-            .ToList();
+                    )).ToList();
+        
         return Result<List<AccountDto>>.Success(accountsDto);
     }
 
@@ -42,12 +42,12 @@ public class AccountService : IAccountService
     public async Task<Result<AccountDetailsDto>> GetAccountWithDetailsAsync(Guid id)
     {
         Account? account = await accountRepository.GetAccountWithDetailsAsync(id);
+        
         return account is null
             ? Result<AccountDetailsDto>.Failure($"Account with id: {id} not found")
-            : Result<AccountDetailsDto>.Success(new AccountDetailsDto(account.Id, account.AccountNumber,
-                account.StartDate, account.EndDate, account.Address, account.Area,
-                account.Residents.Select(r => new ResidentDto(r.Id, r.FirstName, r.LastName, r.MiddleName)).ToList()));
+            : Result<AccountDetailsDto>.Success(MapToDto(account));
     }
+    
 
     public async Task<Result<AccountDto>> CreateAsync(CreateAccountRequest accountDto)
     {
@@ -93,5 +93,20 @@ public class AccountService : IAccountService
         var accounts = await accountRepository.GetAccountsAsync(filter);
         var accountsDto = accounts.Select(a => new AccountDto(a.Id, a.AccountNumber)).ToList();
         return Result<List<AccountDto>>.Success(accountsDto);
+    }
+    
+    private static AccountDetailsDto MapToDto(Account account)
+    {
+        return new AccountDetailsDto(
+            account.Id,
+            account.AccountNumber,
+            account.StartDate,
+            account.EndDate,
+            account.Address,
+            account.Area,
+            account.Residents
+                .Select(r => new ResidentDto(r.Id, r.FirstName, r.LastName, r.MiddleName))
+                .ToList()
+        );
     }
 }

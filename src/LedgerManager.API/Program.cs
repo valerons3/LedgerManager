@@ -10,13 +10,6 @@ using LedgerManager.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-// Serilog
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Information()
-    .Enrich.FromLogContext()
-    .WriteTo.Console() 
-    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +21,11 @@ builder.Services.AddControllers().AddFluentValidation(c =>
     c.RegisterValidatorsFromAssemblyContaining<CreateAccountRequestValidator>();
 });
 
+// Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+builder.Host.UseSerilog();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -46,6 +44,7 @@ builder.Services.AddScoped<IResidentRepository, ResidentRepository>();
 builder.Services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IResidentService, ResidentService>();
+
 
 var app = builder.Build();
 

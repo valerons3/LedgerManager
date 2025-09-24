@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerManager.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0e5d6e80ac108468138819d9bdad63d90f12dfa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f23739c2bb50c575a4f06d0991296af47dade9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerManager.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerManager.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

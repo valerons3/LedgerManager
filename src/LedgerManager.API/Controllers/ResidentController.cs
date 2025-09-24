@@ -22,7 +22,7 @@ public class ResidentController : ControllerBase
         return Ok(residentsResult.Value); 
     }
     
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid}", Name = "GetResidentById")]
     public async Task<IActionResult> GetByIdAsync(Guid id)
     {
         var residentResult = await residentService.GetByIdAsync(id);
@@ -40,12 +40,13 @@ public class ResidentController : ControllerBase
 
         if (!residentResult.IsSuccess)
             return BadRequest(new { error = residentResult.Error });
-
-        return CreatedAtAction(
-            nameof(GetByIdAsync),
-            new { id = residentResult.Value.Id },
-            residentResult.Value
+        
+        return CreatedAtRoute(
+            routeName: "GetResidentById",
+            routeValues: new { id = residentResult.Value.Id },
+            value: residentResult.Value
         );
+        
     }
     
     [HttpPut("{id:guid}")]
