@@ -33,7 +33,7 @@ public class AccountController : ControllerBase
         return Ok(accountResult.Value);
     }
 
-    [HttpGet("details/{id}")]
+    [HttpGet("details/{id:guid}")]
     public async Task<IActionResult> GetAccountDetailsAsync(Guid id)
     {
         var accountResult = await accountService.GetAccountWithDetailsAsync(id);
@@ -56,7 +56,7 @@ public class AccountController : ControllerBase
         );
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] UpdateAccountRequest accountDto)
     {
         var accountResult = await accountService.UpdateAsync(id, accountDto);
@@ -67,7 +67,7 @@ public class AccountController : ControllerBase
         return Ok(accountResult.Value);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var accountResult = await accountService.DeleteAsync(id);
