@@ -33,26 +33,30 @@ public class AccountController : ControllerBase
         return Ok(accountResult.Value);
     }
 
-    [HttpGet("details/{id:guid}")]
+    [HttpGet("details/{id:guid}", Name = "GetAccountDetails")]
     public async Task<IActionResult> GetAccountDetailsAsync(Guid id)
     {
         var accountResult = await accountService.GetAccountWithDetailsAsync(id);
-        
+    
         if (!accountResult.IsSuccess)
             return NotFound(new { error = accountResult.Error });
-        
+    
         return Ok(accountResult.Value);
     }
+
 
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateAccountRequest accountDto)
     {
         var accountResult = await accountService.CreateAsync(accountDto);
-        
-        return CreatedAtAction(
-            nameof(GetAccountDetailsAsync), 
-            new { id = accountResult.Value.Id }, 
-            accountResult.Value
+
+        if (!accountResult.IsSuccess)
+            return BadRequest(new { error = accountResult.Error });
+
+        return CreatedAtRoute(
+            routeName: "GetAccountDetails",
+            routeValues: new { id = accountResult.Value.Id },
+            value: accountResult.Value
         );
     }
 

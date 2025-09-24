@@ -1,0 +1,35 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace LedgerManager.API.Middleware;
+
+public class ExceptionHandlingMiddleware
+{
+    private readonly RequestDelegate next;
+    private readonly ILogger<ExceptionHandlingMiddleware> logger;
+    
+    public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+    {
+        this.next = next;
+        this.logger = logger;
+    }
+    
+    public async Task Invoke(HttpContext context)
+    {
+        try
+        {
+            await next(context);
+        }
+        catch (DbUpdateException ex)
+        {
+            logger.LogError(ex, "Database update failed at {Path}. Exception: {Message}", context.Request.Path, ex.Message);
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new { error = "Database error" });
+        }
+        catch (Exception ex)
+        {
+            logger.LogCritical(ex, "Unhandled exception at {Path}. Message: {Message}", context.Request.Path, ex.Message);
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new { error = "Internal server error" });
+        }
+    }
+}

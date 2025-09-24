@@ -1,17 +1,38 @@
+using FluentValidation.AspNetCore;
+using LedgerManager.API.Middleware;
 using LedgerManager.Application.Interfaces.Repositories;
 using LedgerManager.Application.Interfaces.Services;
 using LedgerManager.Application.Services;
+using LedgerManager.Application.Validators;
 using LedgerManager.Infrastructure.Services;
 using LedgerManager.Persistence.DbContexts;
 using LedgerManager.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+
+// Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console() 
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddControllers();
+// Controllers and Validators
+builder.Services.AddControllers().AddFluentValidation(c =>
+{
+    c.RegisterValidatorsFromAssemblyContaining<CreateAccountRequestValidator>();
+});
+
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 // Database
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -37,8 +58,11 @@ using (var scope = app.Services.CreateScope())
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
