@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerManager.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aaa1fb6b7a496a42c8ea5b982bc0aa00fc3bc578")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4d1180b3f557d71d49722c2ba335adbce42aa5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerManager.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerManager.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
