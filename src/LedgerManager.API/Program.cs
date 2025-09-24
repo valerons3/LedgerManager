@@ -1,3 +1,4 @@
+using System.Reflection;
 using FluentValidation.AspNetCore;
 using LedgerManager.API.Middleware;
 using LedgerManager.Application.Interfaces.Repositories;
@@ -29,7 +30,18 @@ builder.Host.UseSerilog();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "LedgerManager API",
+        Version = "v1",
+        Description = "API для работы с ЛС и проживающими"
+    });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 
 // Database

@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LedgerManager.API.Controllers;
 
+/// <summary>
+/// Контроллер для работы с жильцами
+/// </summary>
 [ApiController]
 [Route("api/resident")]
 public class ResidentController : ControllerBase
@@ -15,6 +18,10 @@ public class ResidentController : ControllerBase
         this.residentService = residentService;
     }
     
+    /// <summary>
+    /// Получить список всех жильцов
+    /// </summary>
+    /// <response code="200">Возвращает список жильцов</response>
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
@@ -22,6 +29,12 @@ public class ResidentController : ControllerBase
         return Ok(residentsResult.Value); 
     }
     
+    /// <summary>
+    /// Получить жильца по Id
+    /// </summary>
+    /// <param name="id">Идентификатор жильца</param>
+    /// <response code="200">Возвращает жильца</response>
+    /// <response code="404">Жилец с указанным Id не найден</response>
     [HttpGet("{id:guid}", Name = "GetResidentById")]
     public async Task<IActionResult> GetByIdAsync(Guid id)
     {
@@ -33,6 +46,12 @@ public class ResidentController : ControllerBase
         return Ok(residentResult.Value);
     }
     
+    /// <summary>
+    /// Создать нового жильца
+    /// </summary>
+    /// <param name="request">Данные нового жильца</param>
+    /// <response code="201">Жилец успешно создан</response>
+    /// <response code="400">Ошибка валидации данных</response>
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateResidentRequest request)
     {
@@ -49,6 +68,13 @@ public class ResidentController : ControllerBase
         
     }
     
+    /// <summary>
+    /// Обновить данные существующего жильца
+    /// </summary>
+    /// <param name="id">Идентификатор жильца</param>
+    /// <param name="request">Новые данные жильца</param>
+    /// <response code="200">Данные жильца успешно обновлены</response>
+    /// <response code="404">Жилец с указанным Id не найден</response>
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] UpdateResidentRequest request)
     {
@@ -60,6 +86,12 @@ public class ResidentController : ControllerBase
         return Ok(residentResult.Value);
     }
     
+    /// <summary>
+    /// Удалить жильца
+    /// </summary>
+    /// <param name="id">Идентификатор жильца</param>
+    /// <response code="204">Жилец успешно удален</response>
+    /// <response code="404">Жилец с указанным Id не найден</response>
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
