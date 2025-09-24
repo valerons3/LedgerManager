@@ -1,5 +1,6 @@
 using LedgerManager.Application.Interfaces.Repositories;
 using LedgerManager.Application.Interfaces.Services;
+using LedgerManager.Application.Services;
 using LedgerManager.Infrastructure.Services;
 using LedgerManager.Persistence.DbContexts;
 using LedgerManager.Persistence.Repositories;
@@ -22,6 +23,8 @@ builder.Services.AddScoped<IResidentRepository, ResidentRepository>();
 
 // Services
 builder.Services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IResidentService, ResidentService>();
 
 var app = builder.Build();
 

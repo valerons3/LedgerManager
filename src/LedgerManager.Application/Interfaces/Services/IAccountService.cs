@@ -15,5 +15,5 @@ public interface IAccountService
     Task<Result<AccountDto>> UpdateAsync(Guid id, UpdateAccountRequest accountDto);
     Task<Result<bool>> DeleteAsync(Guid id);
     
-    Task<Result<List<AccountDto>>> GetAccountsAsync(AccountFilter filter);
+    Task<Result<List<AccountDto>>> GetAccountsWithFilterAsync(AccountFilter filter);
 }

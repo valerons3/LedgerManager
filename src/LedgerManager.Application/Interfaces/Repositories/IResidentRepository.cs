@@ -10,5 +10,4 @@ public interface IResidentRepository
     Task AddAsync(Resident resident);
     Task UpdateAsync(Resident resident);
     Task DeleteAsync(Resident resident);
-    
 }

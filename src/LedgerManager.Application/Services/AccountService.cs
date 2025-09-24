@@ -88,7 +88,7 @@ public class AccountService : IAccountService
         return Result<bool>.Success(true);
     }
 
-    public async Task<Result<List<AccountDto>>> GetAccountsAsync(AccountFilter filter)
+    public async Task<Result<List<AccountDto>>> GetAccountsWithFilterAsync(AccountFilter filter)
     {
         var accounts = await accountRepository.GetAccountsAsync(filter);
         var accountsDto = accounts.Select(a => new AccountDto(a.Id, a.AccountNumber)).ToList();
